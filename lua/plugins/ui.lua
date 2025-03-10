@@ -53,19 +53,11 @@ return {
     end,
   },
   --nvim-notify
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      timeout = 5000,
-    },
-  },
-  --snacks
   -- {
-  --   "snacks.nvim",
+  --   "rcarriga/nvim-notify",
   --   opts = {
-  --     scroll = { enabled = false },
+  --     timeout = 5000,
   --   },
-  --   keys = {},
   -- },
   -- statusline
   {
