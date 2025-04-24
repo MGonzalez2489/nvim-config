@@ -16,30 +16,30 @@ return {
           auto_close = false,
           focus = "list",
         },
-        files = {
-          hiden = true,
-          ignored = true,
-          exclude = {
-            "node_modules/",
-            "dist/",
-            -- ".next/",
-            -- ".vite/",
-            ".git/",
-            -- ".gitlab/",
-            "build/",
-            "target/",
-            ".angular/",
-            -- "dadbod_ui/tmp/",
-            -- "dadbod_ui/dev/",
-
-            -- "package-lock.json",
-            "pnpm-lock.yaml",
-            "yarn.lock",
-          },
-        },
-      },
-      files = {
-        hidden = true,
+        --   files = {
+        --     hiden = false,
+        --     ignored = false,
+        --     exclude = {
+        --       "node_modules/",
+        --       --"dist/",
+        --       -- ".next/",
+        --       -- ".vite/",
+        --       ".git/",
+        --       -- ".gitlab/",
+        --       --"build/",
+        --       --"target/",
+        --       ".angular/",
+        --       -- "dadbod_ui/tmp/",
+        --       -- "dadbod_ui/dev/",
+        --
+        --       -- "package-lock.json",
+        --       "pnpm-lock.yaml",
+        --       "yarn.lock",
+        --     },
+        --   },
+        -- },
+        -- files = {
+        --   hidden = true,
       },
       layout = {
         preset = "telescope",
@@ -59,7 +59,12 @@ return {
             border = "none",
             {
               box = "vertical",
-              { win = "list", title = " Results ", title_pos = "center", border = "rounded" },
+              {
+                win = "list",
+                title = " Results ",
+                title_pos = "center",
+                border = "rounded",
+              },
               {
                 win = "input",
                 height = 1,
@@ -103,8 +108,8 @@ return {
       },
       formatters = {
         file = {
-          filename_first = true, -- display filename before the file path
-          truncate = 80,
+          -- filename_first = true, -- display filename before the file path
+          -- truncate = 80,
         },
       },
     },
@@ -118,6 +123,13 @@ return {
   keys = {
     -- find files
     { "<C-p>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+    {
+      "<C-S-F>",
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = "Grep",
+    },
     -- Open git log in vertical view
     -- {
     --   "<leader>gl",
