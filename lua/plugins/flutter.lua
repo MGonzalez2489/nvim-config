@@ -1,9 +1,9 @@
 return {
   -- Dart/Flutter
-  { "dart-lang/dart-vim-plugin" },
-  { "thosakwe/vim-flutter" },
-  { "natebosch/vim-lsc" },
-  { "natebosch/vim-lsc-dart" },
+  -- { "dart-lang/dart-vim-plugin" },
+  -- { "thosakwe/vim-flutter" },
+  -- { "natebosch/vim-lsc" },
+  -- { "natebosch/vim-lsc-dart" },
 
   -- Puedes añadir más configuraciones aquí si es necesario
   -- Por ejemplo, si necesitas configurar el LSC para Dart:
