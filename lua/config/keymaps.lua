@@ -5,7 +5,7 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
 -- Select all (ctrl+a)
-keymap.set("n", "<C-a>", "gg<S-v>G")
+-- keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Jumplist (ctrl+shift+m)
 -- keymap.set("n", "<C-m>", "<C-i>", opts)
