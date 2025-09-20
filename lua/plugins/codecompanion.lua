@@ -37,6 +37,8 @@ return {
             },
           },
         },
+        inline = { adapter = "gemini" },
+        cmd = { adapter = "gemini" },
       },
       -- NOTE: The log_level is in `opts.opts`
       opts = {
@@ -45,7 +47,7 @@ return {
     },
     keys = {
       {
-        "<C-a>",
+        "<C-i>",
         "<cmd>CodeCompanionActions<CR>",
         desc = "Open the action palette",
         mode = { "n", "v" },
