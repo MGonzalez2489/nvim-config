@@ -2,7 +2,10 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = true,
-    opts = { style = "moon" }, -- moon,night
+    opts = {
+      style = "moon",
+      dim_inactive = true,
+    }, -- moon,night
   },
 }
 -- return {
