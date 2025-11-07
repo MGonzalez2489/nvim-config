@@ -16,30 +16,6 @@ return {
           auto_close = false,
           focus = "list",
         },
-        --   files = {
-        --     hiden = false,
-        --     ignored = false,
-        --     exclude = {
-        --       "node_modules/",
-        --       --"dist/",
-        --       -- ".next/",
-        --       -- ".vite/",
-        --       ".git/",
-        --       -- ".gitlab/",
-        --       --"build/",
-        --       --"target/",
-        --       ".angular/",
-        --       -- "dadbod_ui/tmp/",
-        --       -- "dadbod_ui/dev/",
-        --
-        --       -- "package-lock.json",
-        --       "pnpm-lock.yaml",
-        --       "yarn.lock",
-        --     },
-        --   },
-        -- },
-        -- files = {
-        --   hidden = true,
       },
       layout = {
         preset = "telescope",
