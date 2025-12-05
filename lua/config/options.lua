@@ -47,3 +47,6 @@ if vim.fn.has("nvim-0.8") == 1 then
 end
 
 vim.g.snacks_animate = false
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
