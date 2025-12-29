@@ -22,7 +22,7 @@ keymap.set("n", "<C-w><C-k>", "<C-w>+") --Up
 keymap.set("n", "<C-w><C-j>", "<C-w>-") --Down
 
 -- code companion
-keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+keymap.set({ "n", "v" }, "aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
 keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
 keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 

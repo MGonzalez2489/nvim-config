@@ -28,6 +28,13 @@ return {
         },
       },
     },
+    display = {
+      chat = {
+        window = {
+          layout = "vertical",
+        },
+      },
+    },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
