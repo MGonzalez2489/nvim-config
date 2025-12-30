@@ -28,3 +28,9 @@ keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 -- cmd([[cab cc CodeCompanion]])
+
+-- Mapeo para saltar entre ventanas (funciona en Snacks, Telescope y split normales)
+vim.keymap.set("n", "<C-n>", "<C-w>w", { desc = "Saltar al Preview / Siguiente Ventana" })
+
+-- Si quieres que funcione incluso mientras estás filtrando/escribiendo en el buscador de Snacks:
+vim.keymap.set("i", "<C-n>", "<esc><C-w>w", { desc = "Saltar al Preview desde modo inserto" })

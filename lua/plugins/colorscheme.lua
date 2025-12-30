@@ -5,6 +5,6 @@ return {
     opts = {
       style = "night",
       dim_inactive = true,
-    }, -- moon,night
+    },
   },
 }
