@@ -79,6 +79,18 @@ return {
             ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
             ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
             ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+            ["<a-w>"] = false,
+            ["O"] = { "cycle_win", mode = { "i", "n" } },
+          },
+        },
+        preview = {
+          keys = {
+            ["O"] = { "cycle_win", mode = { "i", "n" } },
+          },
+        },
+        list = {
+          keys = {
+            ["O"] = { "cycle_win", mode = { "i", "n" } },
           },
         },
       },
@@ -86,6 +98,9 @@ return {
         file = {
           -- filename_first = true, -- display filename before the file path
           -- truncate = 80,
+          filename_first = false,
+          fields = { "icon", "file", "ext" },
+          icon_width = 2,
         },
       },
     },
