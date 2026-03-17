@@ -22,12 +22,17 @@ keymap.set("n", "<C-w><C-k>", "<C-w>+") --Up
 keymap.set("n", "<C-w><C-j>", "<C-w>-") --Down
 
 -- code companion
-keymap.set({ "n", "v" }, "aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+-- Acciones rápidas (Refactor, Fix, Explain)
+keymap.set({ "n", "v" }, "<leader>ap", "<cmd>CodeCompanionActions<cr>", { desc = "AI Actions" })
 
--- Expand 'cc' into 'CodeCompanion' in the command line
--- cmd([[cab cc CodeCompanion]])
+-- Chat con contexto (Toggle)
+keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "AI Chat" })
+
+-- Inline Edit
+keymap.set({ "n", "v" }, "<leader>ai", "<cmd>CodeCompanion<cr>", { desc = "AI Inline Edit" })
+
+-- Añadir selección al chat
+keymap.set("v", "<leader>av", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add to AI Chat" })
 
 -- Mapeo para saltar entre ventanas (funciona en Snacks, Telescope y split normales)
 vim.keymap.set("n", "<C-n>", "<C-w>w", { desc = "Saltar al Preview / Siguiente Ventana" })

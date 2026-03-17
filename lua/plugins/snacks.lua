@@ -81,6 +81,7 @@ return {
             ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
             ["<a-w>"] = false,
             ["O"] = { "cycle_win", mode = { "i", "n" } },
+            ["<C-n>"] = { "focus_preview", mode = { "i", "n" } },
           },
         },
         preview = {

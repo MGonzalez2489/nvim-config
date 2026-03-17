@@ -27,6 +27,12 @@ return {
           model = "gemini-2.5-flash",
         },
       },
+      inline = {
+        adapter = {
+          name = "gemini",
+          model = "gemini-2.5-flash",
+        },
+      },
     },
     display = {
       chat = {
