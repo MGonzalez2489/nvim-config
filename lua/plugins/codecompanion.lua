@@ -35,11 +35,39 @@ return {
       },
     },
     display = {
+      diff = {
+        provider = "vertical",
+      },
       chat = {
         window = {
           layout = "vertical",
+          width = 0.4,
         },
       },
+    },
+
+    strategies = {
+      chat = {
+        adapter = {
+          name = "gemini",
+          model = "gemini-2.5-flash",
+        },
+        -- adapter = "gemini",
+        roles = { user = "Manuel" },
+        slash_commands = {
+          ["buffer"] = { opts = { contains_code = true } },
+          ["file"] = { opts = { contains_code = true } },
+          ["project"] = {
+            callback = function(chat)
+              -- Esto le pasa tu archivo de reglas automáticamente al chat
+              return "/read AI.md"
+            end,
+            description = "Cargar reglas del proyecto",
+          },
+        },
+      },
+      inline = { adapter = "gemini" },
+      agent = { adapter = "gemini", enabled = true }, -- ¡Habilita el modo agente!
     },
   },
   dependencies = {
