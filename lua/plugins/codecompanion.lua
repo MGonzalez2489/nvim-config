@@ -1,39 +1,114 @@
 return {
   "olimorris/codecompanion.nvim",
   version = "^18.0.0",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "hrsh7th/nvim-cmp", --Optional: to autocomplete in buffer
+    -- "ravitemer/mcphub.nvim",
+  },
   opts = {
     language = "Spanish",
+
     adapters = {
-      acp = {
-        gemini_cli = function()
-          return require("codecompanion.adapters").extend("gemini_cli", {
-            defaults = {
-              auth_method = "gemini-api-key", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+      gemini = function()
+        return require("codecompanion.adapters").extend("gemini", {
+          env = {
+            api_key = "GEMINI_API_KEY",
+          },
+          schema = {
+            model = {
+              default = "gemini-2.5-flash",
             },
-            env = {
-              GEMINI_API_KEY = "GEMINI_API_KEY",
-            },
-          })
-        end,
-      },
+          },
+        })
+      end,
+      -- 2. Ejemplo Anthropic (Claude 3.5 Sonnet para tareas complejas de arquitectura)
+      -- anthropic = function()
+      --   return require("codecompanion.adapters").extend("anthropic", {
+      --     env = {
+      --       api_key = "ANTHROPIC_API_KEY",
+      --     },
+      --     schema = {
+      --       model = {
+      --         default = "claude-3-5-sonnet-latest",
+      --       },
+      --     },
+      --   })
+      -- end,
     },
-    interactions = {
+    -- main strategy
+    strategies = {
       chat = {
-        roles = {
-          user = "Manuel",
-        },
+        -- it setup the default model
         adapter = {
           name = "gemini",
           model = "gemini-2.5-flash",
+        }, -- Modelo por defecto para el chat
+        roles = { user = "Manuel", llm = "CodeCompanion" },
+        opts = {
+          system_prompt = function()
+            local path = vim.fn.getcwd() .. "/.codecompanion/system_prompt.md"
+            if vim.fn.filereadable(path) == 1 then
+              local lines = vim.fn.readfile(path)
+              return table.concat(lines, "\n")
+            end
+            return "Eres un asistente experto en programación."
+          end,
+        },
+        slash_commands = {
+          ["buffer"] = {
+            opts = { contains_code = true },
+            description = "Insertar el buffer actual",
+          },
+          ["file"] = {
+            opts = { contains_code = true },
+            description = "Buscar e insertar un archivo del monorepo",
+          },
+          ["symbols"] = {
+            opts = { contains_code = true },
+            description = "Insertar símbolos/funciones (Treesitter)",
+          },
+          ["help"] = { opts = { contains_code = false } },
+        },
+        keymaps = {
+          change_adapter = {
+            modes = { n = "ga" },
+            index = 1,
+            callback = "keymaps.change_adapter",
+            description = "Cambiar adapter / modelo actual",
+          },
         },
       },
       inline = {
-        adapter = {
-          name = "gemini",
-          model = "gemini-2.5-flash",
+        adapter = "gemini",
+      },
+    },
+    prompt_library = {
+      ["Generate a Unit Test"] = {
+        strategy = "inline",
+        description = "Generar pruebas unitarias para el código seleccionado",
+        opts = {
+          adapter = "gemini",
+          index = 1,
+          is_default = true,
+          is_slash_cmd = false,
+          modes = { "v" },
+          short_name = "unittest",
+        },
+        prompts = {
+          {
+            role = "system",
+            content = "Eres un experto en testing. Genera pruebas unitarias concisas utilizando Jest para NestJS o Jasmine/Jest para Angular.",
+          },
+          {
+            role = "user",
+            content = "Por favor genera las pruebas unitarias para el siguiente código:\n\n```${filetype}\n${selection}\n```",
+          },
         },
       },
     },
+
     display = {
       diff = {
         provider = "vertical",
@@ -41,37 +116,9 @@ return {
       chat = {
         window = {
           layout = "vertical",
-          width = 0.4,
+          width = 0.45,
         },
       },
     },
-
-    strategies = {
-      chat = {
-        adapter = {
-          name = "gemini",
-          model = "gemini-2.5-flash",
-        },
-        -- adapter = "gemini",
-        roles = { user = "Manuel" },
-        slash_commands = {
-          ["buffer"] = { opts = { contains_code = true } },
-          ["file"] = { opts = { contains_code = true } },
-          ["project"] = {
-            callback = function(chat)
-              -- Esto le pasa tu archivo de reglas automáticamente al chat
-              return "/read AI.md"
-            end,
-            description = "Cargar reglas del proyecto",
-          },
-        },
-      },
-      inline = { adapter = "gemini" },
-      agent = { adapter = "gemini", enabled = true }, -- ¡Habilita el modo agente!
-    },
-  },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
   },
 }
