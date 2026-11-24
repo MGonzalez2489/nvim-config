@@ -37,7 +37,15 @@ keymap.set({ "n", "v" }, "<leader>ai", "<cmd>CodeCompanion<cr>", { desc = "AI In
 keymap.set("v", "<leader>av", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add Selection to AI Chat" })
 
 -- Seleccionar Adapter / Modelo al vuelo (Gemini, Anthropic, Copilot, etc.)
-keymap.set("n", "<leader>am", "<cmd>CodeCompanionCmd SelectAdapter<cr>", { desc = "AI Switch Model/Adapter" })
+keymap.set("n", "<leader>am", function()
+  local codecompanion = require("codecompanion")
+  local chat = codecompanion.buf_get_chat(0) or codecompanion.last_chat()
+  if not chat then
+    vim.notify("Abre un chat de CodeCompanion primero", vim.log.levels.WARN)
+    return
+  end
+  require("codecompanion.interactions.chat.keymaps.change_adapter").callback(chat)
+end, { desc = "AI Switch Model/Adapter" })
 
 -- Acciones rápidas (Refactor, Fix, Explain)
 -- keymap.set({ "n", "v" }, "<leader>ap", "<cmd>CodeCompanionActions<cr>", { desc = "AI Actions" })

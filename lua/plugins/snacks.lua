@@ -75,12 +75,12 @@ return {
             -- add the following keymap to your config
             ["<Esc>"] = { "close", mode = { "n", "i" } },
             -- I'm used to scrolling like this in LazyGit
-            ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
-            ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
-            ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
-            ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+            ["J"] = { "preview_scroll_down", mode = "n" },
+            ["K"] = { "preview_scroll_up", mode = "n" },
+            ["H"] = { "preview_scroll_left", mode = "n" },
+            ["L"] = { "preview_scroll_right", mode = "n" },
             ["<a-w>"] = false,
-            ["O"] = { "cycle_win", mode = { "i", "n" } },
+            ["O"] = { "cycle_win", mode = "n" },
             ["<C-n>"] = { "focus_preview", mode = { "i", "n" } },
           },
         },
